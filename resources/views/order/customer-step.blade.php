@@ -4,18 +4,20 @@
             <div class="customer-step">
                 <div class="mb-3">
                     <h1>Ügyfél</h1>
-                    <form hx-trigger="change from:#customer-select" hx-post="/order/customer/select-customer"
+                    <form hx-trigger="change from:#customer-select" hx-post="/order/new/customer/select-customer"
                         hx-target="#customer-form">
                         <select name="customer" id="customer-select" class="input select-lg w-full" autocomplete="off">
                             <option value="">Új ügyfél</option>
-                            <% customerInfos.forEach((customerInfo) => { %>
-                            <option value="<%= customerInfo.id %>"><%= customerInfo.preview %></option>
-                            <% }); %>
+                            @foreach ($customers as $customer)
+                                <option value="{{ $customer->id }}">{{ $customer->billingAddress->last_name }}
+                                    {{ $customer->billingAddress->first_name }} - {{ $customer->phone_number }} -
+                                    {{ $customer->email }}</option>
+                            @endforeach
                         </select>
                     </form>
                 </div>
                 <hr class="mb-3">
-                <form action="/new-order/customer/save" method="post">
+                <form action="/order/new/customer/save" method="post">
                     <div id="customer-form">
                     </div>
                 </form>

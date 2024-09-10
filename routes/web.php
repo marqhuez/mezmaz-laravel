@@ -9,4 +9,4 @@ Route::get(
     }
 );
 
-Route::get('/order/new', [OrderController::class, 'index'])->name('newOrder');
+Route::get('/order/new', [OrderController::class, 'customerStep'])->name('newOrder');

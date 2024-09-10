@@ -11,8 +11,8 @@ class OrderController extends Controller
     {
     }
 
-    public function index(Request $request)
+    public function customerStep(Request $request)
     {
-        dd($request);
+        return view('order/customer-step');
     }
 }

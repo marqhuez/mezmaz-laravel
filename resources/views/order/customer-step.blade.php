@@ -6,6 +6,7 @@
                     <h1>Ügyfél</h1>
                     <form hx-trigger="change from:#customer-select" hx-post="/order/new/customer/select-customer"
                         hx-target="#customer-form">
+                        @csrf
                         <select name="customer" id="customer-select" class="input select-lg w-full" autocomplete="off">
                             <option value="">Új ügyfél</option>
                             @foreach ($customers as $customer)
@@ -17,11 +18,31 @@
                     </form>
                 </div>
                 <hr class="mb-3">
-                <form action="/order/new/customer/save" method="post">
-                    <div id="customer-form">
-                    </div>
-                </form>
+                <div id="customer-form">
+                    @include('order/next-button')
+                </div>
             </div>
         </div>
     </div>
+    <script>
+        const switchSameDeliveryAndBilling = (element) => {
+            const addressContainer = document.querySelector("#delivery-address");
+            const inputs = addressContainer.querySelectorAll("input");
+            const twoAddressesAreSame = element.checked;
+
+            if (twoAddressesAreSame) {
+                addressContainer.classList.add("hidden");
+                for (const input of inputs) {
+                    input.removeAttribute("required");
+                }
+
+                return;
+            }
+
+            for (const input of inputs) {
+                input.setAttribute("required", true);
+            }
+            addressContainer.classList.remove("hidden");
+        }
+    </script>
 </x-layout>

@@ -9,8 +9,7 @@ class BillingAddress extends Model
 {
     protected $fillable = ['post_code', 'city', 'address', 'county', 'last_name', 'first_name'];
 
-    public function customer(): BelongsTo
-    {
+    public function customer(): BelongsTo {
         return $this->belongsTo(Customer::class);
     }
 }

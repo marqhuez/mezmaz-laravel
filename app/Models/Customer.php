@@ -9,13 +9,11 @@ class Customer extends Model
 {
     protected $fillable = ['email', 'phone_number'];
 
-    public function billingAddress(): HasOne
-    {
+    public function billingAddress(): HasOne {
         return $this->hasOne(BillingAddress::class);
     }
 
-    public function deliveryAddress(): HasOne
-    {
+    public function deliveryAddress(): HasOne {
         return $this->hasOne(DeliveryAddress::class);
     }
 }

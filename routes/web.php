@@ -10,3 +10,5 @@ Route::get(
 );
 
 Route::get('/order/new', [OrderController::class, 'customerStep'])->name('newOrder');
+Route::post('/order/new/customer/select-customer', [OrderController::class, 'selectCustomer'])->name('selectCustomer');
+Route::post('/order/new/customer/save', [OrderController::class, 'saveCustomer'])->name('saveCustomer');

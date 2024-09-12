@@ -7,13 +7,15 @@ use App\Models\Customer;
 
 class CustomerService
 {
-    public function getAll()
-    {
+    public function getAll() {
         return Customer::all();
     }
 
     public function saveNewCustomer(
-        string $email, string $phoneNumber, AddressDTO $billingAddress, AddressDTO $deliveryAddress
+        string $email,
+        string $phoneNumber,
+        AddressDTO $billingAddress,
+        AddressDTO $deliveryAddress
     ) {
         $customer = Customer::create(['email' => $email, 'phone_number' => $phoneNumber]);
 

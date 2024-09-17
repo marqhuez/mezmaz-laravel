@@ -13,4 +13,15 @@ class AddressDTO
         public string $firstName
     ) {
     }
+
+    public static function fromArray(array $array) {
+        return new self(
+            $array['postCode'] ?? '',
+            $array['county'] ?? '',
+            $array['city'] ?? '',
+            $array['address'] ?? '',
+            $array['lastName'] ?? '',
+            $array['firstName'] ?? ''
+        );
+    }
 }

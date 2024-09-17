@@ -4,4 +4,5 @@
         <exclude name="Squiz.Functions.MultiLineFunctionDeclaration.BraceOnSameLine" />
     </rule>
     <rule ref="Generic.Functions.OpeningFunctionBraceKernighanRitchie" />
+    <rule ref="Squiz.Strings.DoubleQuoteUsage.NotRequired" />
 </ruleset>

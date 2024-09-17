@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Customer extends Model
@@ -15,5 +16,9 @@ class Customer extends Model
 
     public function deliveryAddress(): HasOne {
         return $this->hasOne(DeliveryAddress::class);
+    }
+
+    public function orders(): HasMany {
+        return $this->hasMany(Order::class);
     }
 }

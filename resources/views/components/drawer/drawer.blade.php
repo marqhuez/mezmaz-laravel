@@ -1,7 +1,6 @@
 <div class="drawer lg:drawer-open">
     <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
     <div class="drawer-content flex flex-col items-center justify-center">
-        <!-- Page content here -->
         <label for="my-drawer-2" class="btn btn-primary drawer-button lg:hidden">
             Open drawer
         </label>
@@ -12,17 +11,20 @@
             @include('components.drawer.drawer-item', [
                 'href' => '/',
                 'icon' => 'fa-house',
-                'isActive' => false,
+                'isActive' => Route::current()->getName() === 'home',
             ])
             @include('components.drawer.drawer-item', [
-                'href' => '/order/new',
+                'href' => '/order/new/customer',
                 'icon' => 'fa-plus',
-                'isActive' => false,
+                'isActive' =>
+                    Route::current()->getName() === 'customerStep' ||
+                    Route::current()->getName() === 'orderInfoStep' ||
+                    Route::current()->getName() === 'summaryStep',
             ])
             @include('components.drawer.drawer-item', [
                 'href' => '/orders',
                 'icon' => 'fa-list',
-                'isActive' => true,
+                'isActive' => Route::current()->getName() === 'orders',
             ])
         </ul>
     </div>

@@ -18,9 +18,12 @@
                     </form>
                 </div>
                 <hr class="mb-3">
-                <div id="customer-form">
-                    @include('order/next-button')
-                </div>
+                <form action="/order/new/customer/save" method="post">
+                    @csrf
+                    <div id="customer-form">
+                        @include('order/customer-form')
+                    </div>
+                </form>
             </div>
         </div>
     </div>

@@ -4,6 +4,8 @@ namespace App\Services;
 
 use App\DTO\OrderInfoDTO;
 use App\Models\Customer;
+use App\Models\Order;
+use App\Models\OrderItem;
 
 class OrderService
 {
@@ -23,5 +25,13 @@ class OrderService
                 'comb_amount' => $item->combAmount
             ]);
         }
+    }
+
+    public function getAll() {
+        return Order::all();
+    }
+
+    public function getAllItems() {
+        return OrderItem::all();
     }
 }

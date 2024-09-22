@@ -26,6 +26,11 @@
                 'icon' => 'fa-list',
                 'isActive' => Route::current()->getName() === 'orders',
             ])
+            @include('components.drawer.drawer-item', [
+                'href' => '/process',
+                'icon' => 'fa-gears',
+                'isActive' => Route::current()->getName() === 'process',
+            ])
         </ul>
     </div>
 </div>

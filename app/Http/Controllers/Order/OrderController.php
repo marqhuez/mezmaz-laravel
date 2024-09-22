@@ -6,7 +6,7 @@ use App\Exceptions\ExpectedException;
 use App\Http\Controllers\Controller;
 use App\Services\CustomerService;
 use App\Services\OrderService;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Throwable;
 
 class OrderController extends Controller
@@ -34,11 +34,18 @@ class OrderController extends Controller
         try {
             $this->orderService->saveNewOrder($customer, $orderInfo);
         } catch (ExpectedException $exception) {
-            return;
+            Log::info('expected error', ['error' => $exception->getMessage()]);
+            return $exception->getMessage();
         } catch (Throwable $exception) {
-            return;
+            Log::info('unexpected error', ['error' => $exception->getMessage()]);
+            return 'unexpected error';
         }
 
         return redirect('order/new/success');
+    }
+
+    public function orders() {
+        $orders = $this->orderService->getAll();
+        return view('orders', ['orders' => $orders]);
     }
 }

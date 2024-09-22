@@ -4,6 +4,7 @@ use App\Http\Controllers\Order\CustomerController;
 use App\Http\Controllers\Order\OrderController;
 use App\Http\Controllers\Order\OrderInfoController;
 use App\Http\Controllers\Order\SummaryController;
+use App\Http\Controllers\ProcessController;
 use Illuminate\Support\Facades\Route;
 
 Route::get(
@@ -14,10 +15,9 @@ Route::get(
 )->name('home');
 Route::get(
     '/orders',
-    function () {
-        return view('welcome');
-    }
-)->name('orders');
+    [OrderController::class, 'orders']
+)
+    ->name('orders');
 
 Route::get('/order/new/customer', [CustomerController::class, 'customerStep'])->name('customerStep');
 Route::get('/order/new/order-info', [OrderInfoController::class, 'orderInfoStep'])->name('orderInfoStep');
@@ -36,3 +36,5 @@ Route::post('/order/new/save', [OrderController::class, 'saveNewOrder'])->name('
 Route::get('/order/new/success', function () {
     return view('order/success');
 })->name('success');
+
+Route::get('/process', [ProcessController::class, 'index'])->name('process');

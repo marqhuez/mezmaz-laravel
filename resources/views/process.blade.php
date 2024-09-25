@@ -22,7 +22,7 @@
             <div class="min-w-128 h-screen overflow-scroll flex flex-col items-center bg-base-200">
                 <h3 class="mt-2">{{ $tank->name }}</h3>
                 <hr class="mb-3">
-                <div class="tanks flex flex-col items-center min-h-64 w-full pb-3">
+                <div class="tanks flex flex-col items-center min-h-64 w-full pb-3" data-tank-id="{{ $tank->id }}">
                     @foreach ($tank->items as $item)
                         @include('components.order-item-card', ['item' => $item])
                     @endforeach
@@ -32,21 +32,36 @@
     </div>
     <script>
         window.onload = () => {
-            var items = document.getElementById('items');
-            Sortable.create(items, {
-                group: 'shared',
-                animation: 150,
-                ghostClass: 'blue-background-class'
-            });
-
-            var tanks = document.querySelectorAll('.tanks');
-            tanks.forEach((tank) => {
-                Sortable.create(tank, {
+            var lists = document.querySelectorAll('.tanks, #items');
+            lists.forEach((list) => {
+                Sortable.create(list, {
                     group: 'shared',
                     animation: 150,
-                    ghostClass: 'blue-background-class'
+                    ghostClass: 'blue-background-class',
+                    onEnd: function(event) {
+                        save(
+                            event.item.dataset.itemId,
+                            event.from.dataset.tankId,
+                            event.to.dataset.tankId
+                        )
+                    },
                 });
             })
+        }
+
+        const save = async (itemId, from, to) => {
+            await fetch("/move-item", {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                    "X-CSRF-TOKEN": "{{ csrf_token() }}"
+                },
+                body: JSON.stringify({
+                    itemId,
+                    from,
+                    to
+                })
+            });
         }
     </script>
     <style>

@@ -30,12 +30,4 @@ class OrderService
     public function getAll() {
         return Order::all();
     }
-
-    public function getUnassigned() {
-        return OrderItem::unassigned()->get();
-    }
-
-    public function getAllItems() {
-        return OrderItem::all();
-    }
 }

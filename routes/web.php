@@ -38,3 +38,5 @@ Route::get('/order/new/success', function () {
 })->name('success');
 
 Route::get('/process', [ProcessController::class, 'index'])->name('process');
+
+Route::post('move-item', [ProcessController::class, 'moveItem'])->name('moveItem');

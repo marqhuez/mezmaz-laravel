@@ -1,4 +1,4 @@
-<div class="card bg-neutral text-neutral-content w-96 mt-3">
+<div class="card bg-neutral text-neutral-content w-96 mt-3" data-item-id="{{ $item->id }}">
     <div class="card-body items-center text-center">
         <table class="m-0">
             <tr class="border-none">

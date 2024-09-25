@@ -18,8 +18,10 @@ return new class extends Migration
             $table->string('comb_size');
             $table->string('comb_amount');
             $table->unsignedBigInteger('order_id');
+            $table->unsignedBigInteger('tank_id')->nullable();
 
             $table->foreign('order_id')->references('id')->on('orders');
+            $table->foreign('tank_id')->references('id')->on('tanks');
         });
     }
 

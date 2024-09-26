@@ -64,9 +64,4 @@
             });
         }
     </script>
-    <style>
-        .container {
-            max-width: unset !important;
-        }
-    </style>
 </x-layout>

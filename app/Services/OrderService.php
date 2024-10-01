@@ -5,7 +5,6 @@ namespace App\Services;
 use App\DTO\OrderInfoDTO;
 use App\Models\Customer;
 use App\Models\Order;
-use App\Models\OrderItem;
 
 class OrderService
 {
@@ -29,5 +28,9 @@ class OrderService
 
     public function getAll() {
         return Order::all();
+    }
+
+    public function getAllActive() {
+        return Order::active()->get();
     }
 }

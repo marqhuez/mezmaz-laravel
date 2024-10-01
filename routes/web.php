@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Order\CustomerController;
 use App\Http\Controllers\Order\OrderController;
 use App\Http\Controllers\Order\OrderInfoController;
@@ -9,9 +10,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get(
     '/',
-    function () {
-        return view('welcome');
-    }
+    [HomeController::class, 'index']
 )->name('home');
 Route::get(
     '/orders',
